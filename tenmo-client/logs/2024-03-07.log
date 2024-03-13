@@ -1,0 +1,1 @@
+2024-03-07T15:08:01.9214168 500 : [{"timestamp":"2024-03-07T20:08:01.894+00:00","status":500,"error":"Internal Server Error","message":"Data integrity violation","path":"/transfer"}]
