@@ -1,0 +1,2 @@
+2024-03-13T19:55:38.3355975 401 : [no body]
+2024-03-13T20:34:48.8461809 500 : [{"timestamp":"2024-03-14T00:34:48.830+00:00","status":500,"error":"Internal Server Error","message":"PreparedStatementCallback; bad SQL grammar [SELECT a.account_id, a.user_id, a.balance FROM account ... (408 bytes)]

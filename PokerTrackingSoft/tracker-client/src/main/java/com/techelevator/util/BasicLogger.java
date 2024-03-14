@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 public class BasicLogger {
 
 	private static PrintWriter pw = null;
-	private static final String DIRECTORY_NAME = "tenmo-client";
+	private static final String DIRECTORY_NAME = "tracker-client";
 	
 	public static void log(String message) {
 		try {
