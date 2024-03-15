@@ -24,6 +24,8 @@ public class App {
 
     private final TransferService transferservice = new TransferService(API_BASE_URL);
 
+    private final EntryService entryService = new EntryService(API_BASE_URL);
+
     private AuthenticatedUser currentUser;
     private Account account = new Account();
 
@@ -76,6 +78,7 @@ public class App {
             accountservice.setAuthToken(token);
             userservice.setAuthToken(token);
             transferservice.setAuthToken(token);
+            entryService.setAuthToken(token);
             //Any Service needs an Auth Token
         }
         else{
@@ -91,15 +94,15 @@ public class App {
             consoleService.printMainMenu();
             menuSelection = consoleService.promptForMenuSelection("Please choose an option: ");
             if (menuSelection == 1) {
-                viewCurrentBalance();
+                addSesssion();
             } else if (menuSelection == 2) {
-                viewTransferHistory();
+                viewPastSessions();
             } else if (menuSelection == 3) {
-                viewPendingRequests();
+                //viewPendingRequests();
             } else if (menuSelection == 4) {
-                sendBucks();
+                //sendBucks();
             } else if (menuSelection == 5) {
-                requestBucks();
+                //requestBucks();
             } else if (menuSelection == 0) {
                 continue;
             } else {
@@ -109,19 +112,37 @@ public class App {
         }
     }
 
-    private void viewCurrentBalance() {
 
-        account = accountservice.getAccount();
-        if (account != null){
-            System.out.println(account);
+    public void addSesssion (){
+        int userId = currentUser.getUser().getId();
+        BigDecimal amount = consoleService.promptForBigDecimal("Session win/lose (Negative number for loss): ");
+        String gameSize = consoleService.promptForString("Please enter the blinds for the game EX(1/3): ");
+        String gameType = consoleService.promptForString("Please enter a game type EX(NLH): ");
+        String location = consoleService.promptForString("Please enter a location for the session: ");
+
+        Entry sessionEntry = new Entry(userId, amount, gameSize, gameType, location);
+
+        Entry addedSession = entryService.addSession(sessionEntry);
+
+    }
+
+    private void viewPastSessions(){
+        int userId = currentUser.getUser().getId();
+        Entry[] entries = entryService.getEntries(userId);
+
+        if(entries != null){
+            for (int i = 0; i < entries.length; i++){
+                System.out.println(entries[i]);
+            }
         }
-       else{
-            consoleService.printErrorMessage();
+        else{
+            System.out.println("Entries is null");
         }
 
     }
 
-    private void viewTransferHistory() {
+
+/*    private void viewTransferHistory() {
         account = accountservice.getAccount();
         Transfer[] transfers = transferservice.getTransfers();
         //We'll need to loop through the list of transfers to the logged in user/account
@@ -231,6 +252,6 @@ public class App {
             BigDecimal transferAmt = consoleService.promptForAmount();
             Transfer transfer = transferservice.addTransfer(new Transfer(transferAmt, REQUEST, PENDING, fromId, account.getUserId()));
         }
-    }
+    }*/
 
 }

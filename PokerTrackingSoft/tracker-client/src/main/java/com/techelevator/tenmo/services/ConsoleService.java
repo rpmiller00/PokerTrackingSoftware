@@ -26,15 +26,7 @@ public class ConsoleService {
 
     public void printGreeting() {
         System.out.println("*********************");
-        System.out.println("* Welcome to TEnmo! *");
-        System.out.println("*********************");
-
-    }
-
-    public void printTransferHeader() {
-        System.out.println("*********************");
-        System.out.println("Users");
-        System.out.println("Id            Name");
+        System.out.println("* Welcome to PokerTracker! *");
         System.out.println("*********************");
 
     }
@@ -166,34 +158,6 @@ public class ConsoleService {
         return pendingToView;
     }
 
-    public void viewTransferHeader() {
-        System.out.println("*********************************");
-        System.out.println("Transfers");
-        System.out.println("ID       From/To          Amount");
-        System.out.println("*********************************");
-    }
-    public void transferDetailsHeader(){
-        System.out.println("*********************************");
-        System.out.println("Transfer Details");
-        System.out.println("*********************************");
-
-
-    }
-
-    public void pendingRequestHeader() {
-        System.out.println("*********************************");
-        System.out.println("Pending Transfers");
-        System.out.println("ID       To                Amount");
-        System.out.println("*********************************");
-    }
-
-    public void approveOrRejectPendingTransferHeader() {
-        System.out.println("1: Approve");
-        System.out.println("2: Reject");
-        System.out.println("0: Don't approve or reject");
-        System.out.println("**************************");
-    }
-
     public int selectAction() {
         int inputConverted = 0;
         boolean badInput = true;
@@ -214,33 +178,7 @@ public class ConsoleService {
         return inputConverted;
     }
 
-    public void printTransfer(Transfer transfer, Account account) {
-        //If i'm the to Id I received it, If I'm the from Id i sent it
-        // Were thinking you would have to handle sends and requests differently but settled on not needing to
-       // if (transfer.getTransferTypeId()== 2) {
 
-            if (account.getAccountId() == transfer.getAccountTo()) {
-                System.out.println(transfer.getTransferId() + "     " + "From: " + transfer.getUsernameFrom() + "       " + "$" + transfer.getAmount());
-            }
-            if (account.getAccountId() == transfer.getAccountFrom()) {
-                System.out.println(transfer.getTransferId() + "     " + "To: " + transfer.getUsernameTo() + "         " + "$" + transfer.getAmount());
-            }
-       // }
-       /* else{
-            if (account.getAccountId() == transfer.getAccountTo()) {
-                System.out.println(transfer.getTransferId() + "     " + "To: " + transfer.getUsernameFrom() + "       " + "$" + transfer.getAmount());
-            }
-            if (account.getAccountId() == transfer.getAccountFrom()) {
-                System.out.println(transfer.getTransferId() + "     " + "From: " + transfer.getUsernameTo() + "         " + "$" + transfer.getAmount());
-            }
-
-        }*/
-
-    }
-
-    public void printPendingRequest(Transfer transfer) {
-        System.out.println(transfer.getTransferId() + "     " + "To: " + transfer.getUsernameTo() + "         " + "$" + transfer.getAmount());
-    }
 
     public void printLoginMenu() {
         System.out.println();
@@ -252,11 +190,13 @@ public class ConsoleService {
 
     public void printMainMenu() {
         System.out.println();
-        System.out.println("1: View your current balance");
-        System.out.println("2: View your past transfers");
-        System.out.println("3: View your pending requests");
+        System.out.println("1: Log a Session");
+        System.out.println("2: View your past sessions");
+
+        /*System.out.println("3: View your pending requests");
         System.out.println("4: Send TE bucks");
-        System.out.println("5: Request TE bucks");
+        System.out.println("5: Request TE bucks");*/
+
         System.out.println("0: Exit");
         System.out.println();
     }
