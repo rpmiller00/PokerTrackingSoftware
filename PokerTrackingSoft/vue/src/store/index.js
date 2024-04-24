@@ -1,11 +1,22 @@
 import { createStore as _createStore } from 'vuex';
 import axios from 'axios';
+import EntryService from '../services/EntryService.js';
+
 
 export function createStore(currentToken, currentUser) {
   let store = _createStore({
     state: {
       token: currentToken || '',
       user: currentUser || {},
+      entryList: [],
+      entry: {
+        userId: 0,
+        amount: 0,
+        gameSize: "",
+        gameType: "",
+        location: ""
+
+      },
     },
     mutations: {
       SET_AUTH_TOKEN(state, token) {
@@ -22,10 +33,19 @@ export function createStore(currentToken, currentUser) {
         localStorage.removeItem('user');
         state.token = '';
         state.user = {};
+        state.entryList = [];
         axios.defaults.headers.common = {};
       },
+      UPDATE_ENTRIES(state){
+        EntryService.getEntriesForUser(state.user.id)
+        .then((response) =>{
+          state.entryList = response.data;
+        });
+        }
+      }
+
 
     },
-  });
+  );
   return store;
 }

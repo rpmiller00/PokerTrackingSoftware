@@ -1,28 +1,23 @@
 <template>
   <div class="home">
     <div class="spacer"></div>
-    <div class="logo">
-      <img src="src\assets\image.png" />
-    </div>
-    <h2>Your go-to hub for tracking and fixing pesky potholes!</h2>
+    <h2>Welcome to Poker Tracker</h2>
     <div class="box">
       <h3>What We Do</h3>
-      <p> Our platform simplifies pothole reporting, facilitating quick repairs and smoother rides.
-        With real-time updates and seamless communication, PotMole empowers communities to tackle road hazards
-        efficiently.
-        Say goodbye to bumpy roads and hello to smoother travels with PotMole!</p>
+      <p>We allow you to track your poker sessions </p>
     </div>
     <div class="spacer-bot"></div>
-    <footer>
-      Copyright © PotMole Enterprises
-    </footer>
+
   </div>
 </template>
 
 <script>
+import EntryList from '../components/EntryList.vue'
 
 export default {
-
+  created() {
+        this.$store.commit("UPDATE_ENTRIES");
+    },
 };
 </script>
 
@@ -43,32 +38,12 @@ export default {
   height: 5rem;
 }
 
-.home {
-  background-image: url("src/assets/background.webp");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.logo {
-
-  display: flex;
-  justify-content: center;
-  padding-top: 180px;
-  z-index: 2;
-  background-color: none;
-
-}
-
-div>img {
-  width: 60%;
-  height: auto;
-}
 
 div>h2 {
   color: rgb(0, 0, 0);
   text-align: center;
   font-size: 22.3px;
-  padding-bottom: 120px;
+  padding-bottom: 10px;
   font-weight: bolder;
 }
 
@@ -95,74 +70,5 @@ div>h2 {
   border-bottom: .5px solid #E8E2DD;
 }
 
-.btn {
-  border-radius: 10px;
-  border: 2px solid black;
-  color: black;
-  background-color: #E8E2DD;
-  padding: 10px;
-  font-size: 2rem;
-  font-weight: bolder;
-}
 
-.btnbox {
-  display: inline-block;
-  width: 40%;
-  text-align: center;
-  padding: 20px 20px 70px 20px;
-  opacity: .8;
-}
-
-.btn-center {
-  display: flex;
-  justify-content: center;
-}
-
-footer {
-  display: flex;
-  background-color: #E8E2DD;
-  opacity: .7;
-  border-radius: 10px;
-  height: 20px;
-  width: 250px;
-  align-content: left;
-  margin-top: 5%;
-  margin-left: 1%;
-  padding-left: 18px;
-}
-
-@media screen and (max-width: 400px) {
-  .btnbox {
-    width: 40%;
-  }
-
-  .btn {
-    font-size: .7rem;
-  }
-
-  .box p {
-    font-size: 15px;
-  }
-
-  .box {
-    width: 70%;
-  }
-
-  .logo {
-    padding-top: 50px;
-  }
-
-  .btnbox {
-    padding: 10px;
-  }
-
-  .spacer {
-    height: 50px;
-  }
-
-  div>h2 {
-    padding-bottom: 50px;
-  }
-
-}
 </style>

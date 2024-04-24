@@ -17,17 +17,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@PreAuthorize("isAuthenticated()")
+@CrossOrigin
 public class EntryController {
     private UserDao userDao;
     private EntryDao entryDao;
 
     public EntryController(EntryDao entryDao) {
+
         this.entryDao = entryDao;
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(path = "/entry", method = RequestMethod.POST)
+    @RequestMapping(path = "/addEntry", method = RequestMethod.POST)
     public Entry createEntry(@RequestBody Entry newEntry) {
         Entry createdEntry = null;
         try {
@@ -39,7 +40,7 @@ public class EntryController {
         return createdEntry;
     }
 
-    @RequestMapping(path = "/entry/list/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/entryList/{id}", method = RequestMethod.GET)
     public List<Entry> getEntries(@PathVariable int id) {
         List<Entry> entries = new ArrayList<>();
         try {
@@ -54,4 +55,5 @@ public class EntryController {
         return entries;
 
     }
+
 }

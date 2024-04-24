@@ -7,6 +7,8 @@
     <div class="nav">
       <div class="left">
         <router-link class="link" v-bind:to="{ name: 'home' }">Home</router-link>
+        <router-link class="link" v-bind:to="{ name: 'sessions' }">View Sessions</router-link>
+        <router-link class="link" v-bind:to="{ name: 'logsessions' }">Log Session</router-link>
     
       </div>
 
@@ -43,7 +45,7 @@ export default {
         return false;
       }
     }
-  }
+  },
 }
 
 
