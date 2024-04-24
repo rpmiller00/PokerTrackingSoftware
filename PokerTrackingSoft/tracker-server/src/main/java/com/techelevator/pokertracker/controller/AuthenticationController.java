@@ -9,11 +9,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.techelevator.pokertracker.dao.UserDao;
 import com.techelevator.pokertracker.model.LoginDto;
@@ -26,6 +22,7 @@ import org.springframework.web.server.ResponseStatusException;
  * Controller to authenticate users.
  */
 @RestController
+@CrossOrigin
 public class AuthenticationController {
 
     private final TokenProvider tokenProvider;

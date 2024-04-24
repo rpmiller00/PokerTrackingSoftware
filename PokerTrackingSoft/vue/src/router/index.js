@@ -6,9 +6,6 @@ import HomeView from "../views/HomeView.vue";
 import LoginView from "../views/LoginView.vue";
 import LogoutView from "../views/LogoutView.vue";
 import RegisterView from "../views/RegisterView.vue";
-import ReportPotholeView from "../views/ReportPotholeView.vue";
-import PotholeListView from "../views/PotholeListView.vue";
-import EmployeeFormView from "../views/EmployeeFormView.vue"
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component

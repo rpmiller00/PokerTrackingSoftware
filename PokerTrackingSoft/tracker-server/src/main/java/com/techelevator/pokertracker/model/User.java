@@ -10,7 +10,7 @@ public class User {
 
    private int id;
    private String username;
-   @JsonIgnore // prevent from being sent to client
+   @JsonIgnore
    private String password;
    @JsonIgnore
    private boolean activated;
@@ -69,7 +69,8 @@ public class User {
    public void setAuthorities(String authorities) {
       String[] roles = authorities.split(",");
       for (String role : roles) {
-         this.authorities.add(new Authority("ROLE_" + role));
+         String authority = role.contains("ROLE_") ? role : "ROLE_" + role;
+         this.authorities.add(new Authority(authority));
       }
    }
 

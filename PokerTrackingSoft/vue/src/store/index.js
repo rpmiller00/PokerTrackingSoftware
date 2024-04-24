@@ -1,7 +1,5 @@
 import { createStore as _createStore } from 'vuex';
 import axios from 'axios';
-//not sure if this is allowed
-import PotholeService from "../services/PotholeService.js";
 
 export function createStore(currentToken, currentUser) {
   let store = _createStore({

@@ -5,14 +5,6 @@
       <img src="src\assets\image.png" />
     </div>
     <h2>Your go-to hub for tracking and fixing pesky potholes!</h2>
-    <div class="btn-center">
-      <div class="btnbox">
-        <router-link :to="{ name: 'PotholeList' }" tag="button" class="btn"> 🚧View Potholes🚧 </router-link>
-      </div>
-      <div class="btnbox">
-        <router-link :to="{ name: 'ReportPothole' }" tag="button" class="btn"> 🚧Report Potholes🚧 </router-link>
-      </div>
-    </div>
     <div class="box">
       <h3>What We Do</h3>
       <p> Our platform simplifies pothole reporting, facilitating quick repairs and smoother rides.
