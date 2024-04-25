@@ -2,11 +2,11 @@
     <div class="form-container">
         <form v-on:submit.prevent="submitForm">
             <div class="form-data">
-                <label for="amount">Amount: </label>
+                <label for="amount">Amount Won/Lost: $ </label>
                 <input type="text" id="amount" v-model="updatedEntry.amount">
             </div>
             <div class="form-data">
-                <label for="game-size">Game Size: </label>
+                <label for="game-size">Game Size (blinds): </label>
                 <input type="text" id="game-size" v-model="updatedEntry.gameSize">
             </div>
             <div class="form-data">

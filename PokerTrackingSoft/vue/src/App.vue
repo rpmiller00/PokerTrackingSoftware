@@ -1,4 +1,3 @@
-
 <!------------------------- TEMPLATE -------------------------------->
 <template>
   <div id="capstone-app">
@@ -7,9 +6,9 @@
     <div class="nav">
       <div class="left">
         <router-link class="link" v-bind:to="{ name: 'home' }">Home</router-link>
-        <router-link class="link" v-bind:to="{ name: 'sessions' }">View Sessions</router-link>
-        <router-link class="link" v-bind:to="{ name: 'logsessions' }">Log Session</router-link>
-    
+        <router-link class="link" v-bind:to="{ name: 'sessions' }" v-if="checkCurrentUser()">View Sessions</router-link>
+        <router-link class="link" v-bind:to="{ name: 'logsessions' }"  v-if="checkCurrentUser()">Log Session</router-link>
+
       </div>
 
       <div class="spacer"></div>
@@ -34,12 +33,8 @@ export default {
   methods: {
     checkCurrentUser() {
       if (this.$store.state.token != '') {
-        if (this.$store.state.user.authorities[0].name === 'ROLE_ADMIN') {
-          return true;
-        }
-        else {
-          return false;
-        }
+
+        return true;
       }
       else {
         return false;
@@ -59,7 +54,6 @@ export default {
   background-color: transparent;
   height: fit-content;
 }
-
 #views {
   position: absolute;
   top: 0;

@@ -5,6 +5,7 @@
     <div class="box">
       <h3>What We Do</h3>
       <p>We allow you to track your poker sessions </p>
+      <p>Please sign in to View and Track Sessions</p>
     </div>
     <div class="spacer-bot"></div>
 
@@ -29,9 +30,8 @@ export default {
 }
 
 .spacer {
-  background-color: rgb(255, 255, 255);
-  opacity: .25;
   height: 4rem;
+  background-image: linear-gradient(120deg, #4e54c8, #acadbd);
 }
 
 .spacer-bot {
@@ -50,24 +50,25 @@ div>h2 {
 .box p {
   color: rgb(0, 0, 0);
   font-weight: bolder;
-  text-align: left;
+  text-align: center;
 }
 
 .box h3 {
   color: rgb(0, 0, 0);
   font-size: 35px;
-  text-align: left;
+  text-align: center;
   padding-top: 10px;
 }
 
 .box {
-  background-color: #E8E2DD;
-  opacity: .8;
   width: 50%;
   margin: auto;
   border-radius: 10px;
-  border-left: 10px solid #E8E2DD;
-  border-bottom: .5px solid #E8E2DD;
+}
+
+.home {
+  background-image: linear-gradient(120deg, #4e54c8, #acadbd);
+  height:100vh;
 }
 
 
