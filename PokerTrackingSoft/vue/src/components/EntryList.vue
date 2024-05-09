@@ -1,22 +1,55 @@
 <template>
-    <div class="filter">
-                <h3>Search By Game </h3>
-                <div class="dropdown">
-                    <div class="dropdown-content">
-                        <select id="game-type" name="game-type" v-model="selectedOption">
-                            <option value="">All</option>
-                            <option value="NLH">NLH</option>
-                            <option value="PLO">PLO</option>
-                            <!-- <option value="Deleted">Deleted</option> -->
-                        </select>
 
-                        <button v-on:click="getFilteredList()"><strong>Apply Filter</strong></button>
+        <h1>Apply a Filter to View Entries</h1>
 
-                    </div>
-                </div>
-            </div>
+    <div class="dropdown">
+        <div class="dropdown-content">
+            <h5>Game Type: </h5>
+            <select id="game-type" name="game-type" v-model="selectedGame">
+                <option value="">All</option>
+                <option value="NLH">NLH</option>
+                <option value="PLO">PLO</option>
+                <!-- <option value="Deleted">Deleted</option> -->
+            </select>
+
+            <button v-on:click="getFilteredList()"><strong>Apply Filter</strong></button>
+
+        </div>
+        <div class="dropdown-content">
+            <h5>Game Size: </h5>
+            <select id="game-size" name="game-size" v-model="selectedSize">
+                <option value="">All</option>
+                <option value="1-3">1-3</option>
+                <option value="2-5">2-5</option>
+                <option value="Other">Other</option>
+                <!-- <option value="Deleted">Deleted</option> -->
+            </select>
+
+            <button v-on:click="getFilteredList()"><strong>Apply Filter</strong></button>
+
+        </div>
+        <div class="dropdown-content">
+            <h5>Location: </h5>
+            <select id="game-location" name="game-location" v-model="selectedVenue">
+                <option value="">All</option>
+                <option value="Delaware Park">Delaware Park</option>
+                <option value="Other">Other</option>
+                <!-- <option value="Deleted">Deleted</option> -->
+            </select>
+
+            <button v-on:click="getFilteredList()"><strong>Apply Filter</strong></button>
+
+        </div>
+
+    </div>
+    <h1>Statistics</h1>
+    <div class="statistics">
+        <p>Net Winnings: ${{ netWinnings }}</p>
+        <p># of Sessions: {{ totalSessions }}</p>
+        <p v-show="totalSessions!==0" >Net Winnings per Session ${{ netWinnings/totalSessions }}</p>
+    </div>
     <div class="entry-container">
-        <DisplaySession v-bind:key="entry.id" v-for="entry in filteredList" v-bind:entry="entry"/>
+        <DisplaySession v-bind:key="entry.id" v-for="entry in filteredList" v-bind:entry="entry" />
     </div>
 </template>
 
@@ -24,29 +57,62 @@
 import DisplaySession from '../components/DisplaySession.vue'
 
 export default {
-  data() {
+    data() {
         return {
-            selectedOption: "",
+            selectedGame: "",
+            selectedSize: "",
+            selectedVenue: "",
             filteredList: this.$store.state.entryList,
+            netWinnings: 0,
+            totalSessions: 0
         }
     },
     computed: {
-        entryList(){
+        entryList() {
             return this.$store.state.entryList
         }
     },
     components: {
         DisplaySession
     },
-  created() {
+    created() {
         this.$store.commit("UPDATE_ENTRIES");
+        this.getNetWinnings();
+        this.getNumSessions();
     },
-    methods:{
+    updated() {
+        this.getNetWinnings();
+        this.getNumSessions();
+    },
+    methods: {
 
-        getFilteredList() {
-            this.filteredList = this.$store.state.entryList.filter((entry) => { return entry.gameType.includes(this.selectedOption) });
+        // getFilteredListByType() {
+        //     this.filteredList = this.$store.state.entryList.filter((entry) => { return entry.gameType.includes(this.selectedGame) });
 
+        // },
+
+        // getFilteredListBySize() {
+        //     this.filteredList = this.$store.state.entryList.filter((entry) => { return entry.gameSize.includes(this.selectedSize) });
+
+        // },
+        // getFilteredListByVenue() {
+        //     this.filteredList = this.$store.state.entryList.filter((entry) => { return entry.location.includes(this.selectedVenue) });
+
+        // },
+        getFilteredList(){
+            this.filteredList = this.$store.state.entryList.filter((entry) => { return entry.gameType.includes(this.selectedGame) && entry.gameSize.includes(this.selectedSize) && entry.location.includes(this.selectedVenue)});
         },
+
+        getNetWinnings(){
+            this.netWinnings = this.filteredList.reduce((acc,curr) => {
+                return acc + curr.amount;
+            }, 0);
+        },
+        getNumSessions(){
+            this.totalSessions = this.filteredList.reduce((acc) => {
+                return acc + 1;
+            }, 0);
+        }
 
     }
 };
@@ -54,5 +120,16 @@ export default {
 </script>
 
 <style>
+.dropdown {
+    display: flex;
+    justify-content: space-evenly;
+}
 
+h1 {
+    text-align: center;
+}
+.statistics {
+    text-align: center;
+    font-weight: bold;
+}
 </style>

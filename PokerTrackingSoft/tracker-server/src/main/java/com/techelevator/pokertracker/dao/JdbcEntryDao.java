@@ -68,6 +68,15 @@ public class JdbcEntryDao implements EntryDao{
 
         return createdEntry;
     }
+    public void deleteEntry(int id){
+        String sql = "DELETE FROM entry WHERE entry_id = ?;";
+        try {
+            jdbcTemplate.update(sql, id);
+        }
+        catch (CannotGetJdbcConnectionException e) {
+            throw new DaoException("Unable to connect to server or database", e);
+        }
+    }
 
     private Entry mapRowToEntry(SqlRowSet rs) {
         Entry entry = new Entry();

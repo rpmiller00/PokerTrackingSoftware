@@ -50,10 +50,18 @@ public class EntryController {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         if (entries.isEmpty()) {
-            throw new ResponseStatusException(HttpStatus.NO_CONTENT, "No Transfer Found");
+            throw new ResponseStatusException(HttpStatus.NO_CONTENT, "No Sessions Found");
         }
         return entries;
 
     }
-
+    @RequestMapping(path="deleteEntry/{id}", method = RequestMethod.DELETE)
+    public void deleteEntry(@PathVariable int id){
+        try {
+            entryDao.deleteEntry(id);
+        }
+        catch (DaoException e){
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

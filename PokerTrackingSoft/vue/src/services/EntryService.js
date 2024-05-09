@@ -7,6 +7,10 @@ export default {
   },
   getEntriesForUser(userId){
     return axios.get(`entryList/${userId}`);
+  },
+
+  deleteEntry(entryId){
+    return axios.delete(`deleteEntry/${entryId}`);
   }
 
 }

@@ -10,4 +10,6 @@ public interface EntryDao {
     Entry addEntry(Entry newEntry);
 
     List<Entry> getEntriesByUserId(int userId);
+
+    void deleteEntry(int id);
 }
