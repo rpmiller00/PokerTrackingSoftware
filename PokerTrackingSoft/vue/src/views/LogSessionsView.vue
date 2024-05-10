@@ -1,4 +1,5 @@
 <template>
+    <NavOther class="log-nav"/>
     <div class="spacer"></div>
     <div class="content">
         <div class="intro">
@@ -10,9 +11,11 @@
 
 <script>
 import LogSession from '../components/LogSession.vue'
+import NavOther from '../components/NavOther.vue'
 export default {
     components: {
-        LogSession
+        LogSession,
+        NavOther
     }
 
 }
@@ -20,14 +23,21 @@ export default {
 
 <style>
 .spacer {
-    height: 3rem;
+    height: 5rem;
 }
 
 .intro {
     text-align: center;
 }
+
 .content {
-    background-color: red;
-    height: 100vh;
+    border: 2px solid black;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+.log-nav {
+    position: absolute;
+    top:0;
+    left:0;
 }
 </style>
