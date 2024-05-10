@@ -31,6 +31,9 @@ CREATE TABLE entry (
 	game_size varchar(55) NOT NULL,
 	game_type varchar(55) NOT NULL,
 	location  varchar(55) NOT NULL,
+	start_time varchar(55) NOT NULL,
+	end_time varchar(55) NOT NULL,
+	hours decimal(13, 2) NOT NULL,
 	CONSTRAINT PK_entry PRIMARY KEY (entry_id),
 	CONSTRAINT FK_entry_user FOREIGN KEY (user_id) REFERENCES tracker_user (user_id)
 );

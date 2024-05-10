@@ -1,29 +1,33 @@
 <template>
     <div class="spacer"></div>
-    <div class="intro">
-        <h1>Please log session below</h1>
+    <div class="content">
+        <div class="intro">
+            <h1>Please log session below</h1>
+        </div>
+        <LogSession />
     </div>
-    <LogSession/>
 </template>
 
 <script>
 import LogSession from '../components/LogSession.vue'
 export default {
-   components: {
+    components: {
         LogSession
-   }
+    }
 
 }
 </script>
 
 <style>
 .spacer {
-  background-color: rgb(255, 255, 255);
-  opacity: .25;
-  height: 4rem;
-}
-div.intro {
-    text-align: center;
+    height: 3rem;
 }
 
+.intro {
+    text-align: center;
+}
+.content {
+    background-color: red;
+    height: 100vh;
+}
 </style>

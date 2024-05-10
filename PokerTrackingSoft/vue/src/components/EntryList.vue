@@ -1,6 +1,6 @@
 <template>
 
-        <h1>Apply a Filter to View Entries</h1>
+    <h1>Apply a Filter to View Entries</h1>
 
     <div class="dropdown">
         <div class="dropdown-content">
@@ -44,9 +44,18 @@
     </div>
     <h1>Statistics</h1>
     <div class="statistics">
-        <p>Net Winnings: ${{ netWinnings }}</p>
-        <p># of Sessions: {{ totalSessions }}</p>
-        <p v-show="totalSessions!==0" >Net Winnings per Session ${{ netWinnings/totalSessions }}</p>
+        <div class="winnings">
+            <p>Net Winnings: ${{ netWinnings }}</p>
+        </div>
+        <div class="sessions">
+            <p># of Sessions: {{ totalSessions }}</p>
+        </div>
+        <div class="netwinnings">
+            <p v-show="totalSessions !== 0">Net Winnings per Session ${{ Math.round(netWinnings / totalSessions) }}</p>
+        </div>
+        <div class="netwinningsperhour">
+            <p v-show="totalSessions !== 0"> Net Winnings per Hour $ {{ Math.round(netWinnings / totalHours) }}</p>
+        </div>
     </div>
     <div class="entry-container">
         <DisplaySession v-bind:key="entry.id" v-for="entry in filteredList" v-bind:entry="entry" />
@@ -64,7 +73,8 @@ export default {
             selectedVenue: "",
             filteredList: this.$store.state.entryList,
             netWinnings: 0,
-            totalSessions: 0
+            totalSessions: 0,
+            totalHours: 0
         }
     },
     computed: {
@@ -77,12 +87,11 @@ export default {
     },
     created() {
         this.$store.commit("UPDATE_ENTRIES");
-        this.getNetWinnings();
-        this.getNumSessions();
     },
     updated() {
         this.getNetWinnings();
         this.getNumSessions();
+        this.getNumHours();
     },
     methods: {
 
@@ -99,20 +108,26 @@ export default {
         //     this.filteredList = this.$store.state.entryList.filter((entry) => { return entry.location.includes(this.selectedVenue) });
 
         // },
-        getFilteredList(){
-            this.filteredList = this.$store.state.entryList.filter((entry) => { return entry.gameType.includes(this.selectedGame) && entry.gameSize.includes(this.selectedSize) && entry.location.includes(this.selectedVenue)});
+        getFilteredList() {
+            this.filteredList = this.$store.state.entryList.filter((entry) => { return entry.gameType.includes(this.selectedGame) && entry.gameSize.includes(this.selectedSize) && entry.location.includes(this.selectedVenue) });
         },
 
-        getNetWinnings(){
-            this.netWinnings = this.filteredList.reduce((acc,curr) => {
+        getNetWinnings() {
+            this.netWinnings = this.filteredList.reduce((acc, curr) => {
                 return acc + curr.amount;
             }, 0);
         },
-        getNumSessions(){
+        getNumSessions() {
             this.totalSessions = this.filteredList.reduce((acc) => {
                 return acc + 1;
             }, 0);
-        }
+        },
+        getNumHours(){
+            this.totalHours = this.filteredList.reduce((acc, curr) => {
+                return acc + curr.hours;
+            }, 0);
+        },
+
 
     }
 };
@@ -128,8 +143,12 @@ export default {
 h1 {
     text-align: center;
 }
+
 .statistics {
     text-align: center;
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 </style>

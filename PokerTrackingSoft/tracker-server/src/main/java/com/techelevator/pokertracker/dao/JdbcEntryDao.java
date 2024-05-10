@@ -25,7 +25,7 @@ public class JdbcEntryDao implements EntryDao{
 
     public List<Entry> getEntriesByUserId(int userId){
         List<Entry> entries = new ArrayList<>();
-        String sql = "SELECT user_id, entry_id, user_id, amount, game_size, game_type, location FROM entry WHERE user_id = ?;";
+        String sql = "SELECT entry_id, user_id, amount, game_size, game_type, location, start_time, end_time, hours FROM entry WHERE user_id = ?;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, userId);
             while (results.next()) {
@@ -40,7 +40,7 @@ public class JdbcEntryDao implements EntryDao{
 
     public Entry getEntryById(int entryId){
         Entry entry = null;
-        String sql = "SELECT entry_id, user_id, amount, game_size, game_type, location FROM entry WHERE entry_id = ?;";
+        String sql = "SELECT entry_id, user_id, amount, game_size, game_type, location, start_time, end_time, hours FROM entry WHERE entry_id = ?;";
         try {
             SqlRowSet results = jdbcTemplate.queryForRowSet(sql, entryId);
             if (results.next()) {
@@ -54,10 +54,10 @@ public class JdbcEntryDao implements EntryDao{
     public Entry addEntry(Entry newEntry){
         Entry createdEntry = null;
 
-        String sql = "INSERT INTO entry (user_id, amount, game_size, game_type, location) VALUES (?, ?, ?, ?, ?) RETURNING entry_id";
+        String sql = "INSERT INTO entry (user_id, amount, game_size, game_type, location, start_time, end_time, hours) VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING entry_id";
         try {
             int newEntryId = jdbcTemplate.queryForObject(sql, int.class, newEntry.getUserId(), newEntry.getAmount(), newEntry.getGameSize(),
-                    newEntry.getGameType(), newEntry.getLocation());
+                    newEntry.getGameType(), newEntry.getLocation(), newEntry.getStartTime(), newEntry.getEndTime(), newEntry.getHours());
             createdEntry = getEntryById(newEntryId);
 
         } catch (CannotGetJdbcConnectionException e) {
@@ -86,7 +86,9 @@ public class JdbcEntryDao implements EntryDao{
         entry.setGameSize(rs.getString("game_size"));
         entry.setGameType(rs.getString("game_type"));
         entry.setLocation(rs.getString("location"));
-
+        entry.setStartTime(rs.getString("start_time"));
+        entry.setEndTime(rs.getString("end_time"));
+        entry.setHours(rs.getDouble("hours"));
         return entry;
     }
 }

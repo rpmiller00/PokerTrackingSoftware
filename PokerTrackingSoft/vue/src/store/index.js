@@ -14,7 +14,10 @@ export function createStore(currentToken, currentUser) {
         amount: 0,
         gameSize: "",
         gameType: "",
-        location: ""
+        location: "",
+        startTime: "",
+        endTime: "",
+        hours: 0
 
       },
     },
@@ -41,7 +44,8 @@ export function createStore(currentToken, currentUser) {
         .then((response) =>{
           state.entryList = response.data;
         });
-        }
+        },
+        
       }
 
 

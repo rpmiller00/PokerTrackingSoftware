@@ -20,9 +20,7 @@ export default {
 
 <style>
 .spacer {
-  background-color: rgb(255, 255, 255);
-  opacity: .25;
-  height: 4rem;
+  height: 15rem;
 }
 
 </style>

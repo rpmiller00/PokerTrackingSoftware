@@ -11,6 +11,36 @@ public class Entry {
     private String gameType;
     private String location;
 
+    private String startTime;
+
+    private String endTime;
+
+    private double hours;
+
+    public double getHours() {
+        return hours;
+    }
+
+    public void setHours(double hours) {
+        this.hours = hours;
+    }
+
+    public String getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(String startTime) {
+        this.startTime = startTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
     public int getEntryId() {
         return entryId;
     }
@@ -56,15 +86,6 @@ public class Entry {
     }
 
     public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public Entry(int entryId, int userId, BigDecimal amount, String gameSize, String gameType, String location) {
-        this.entryId = entryId;
-        this.userId = userId;
-        this.amount = amount;
-        this.gameSize = gameSize;
-        this.gameType = gameType;
         this.location = location;
     }
 
