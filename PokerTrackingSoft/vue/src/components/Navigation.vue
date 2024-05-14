@@ -1,4 +1,5 @@
 <template>
+
     <div class="nav">
         <div class = "linkdiv">
             <router-link class="link" v-bind:to="{ name: 'home' }">Home</router-link>

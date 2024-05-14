@@ -12,6 +12,7 @@
 
 </template>
 
+
 <script>
 import Navigation from '../components/Navigation.vue';
 export default {
@@ -59,6 +60,7 @@ main {
   font-size: 2rem;
   grid-area: home;
 }
+
 .nav {
   grid-area: nav;
 }
