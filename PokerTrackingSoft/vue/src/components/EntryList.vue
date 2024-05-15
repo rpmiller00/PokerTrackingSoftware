@@ -83,17 +83,17 @@ export default {
             totalHours: 0
         }
     },
-    computed: {
-        entryList() {
-            return this.$store.state.entryList
-        }
-    },
     components: {
         DisplaySession,
         NavOther
     },
     created() {
         this.$store.commit("UPDATE_ENTRIES");
+        this.getFilteredList();
+        this.getNetWinnings();
+        this.getNumSessions();
+        this.getNumHours();
+
     },
     updated() {
         this.getNetWinnings();
@@ -133,6 +133,7 @@ body {
     display: grid;
     margin: 0;
     padding: 0;
+    background-image: linear-gradient(to bottom right, #0bffd6, #c1ddd8);
     width: 100vw;
     height: 100vh;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;

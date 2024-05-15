@@ -1,5 +1,4 @@
 <template>
-    <div class="spacer"></div>
     <div>
         <EntryList/>
     </div>

@@ -39,11 +39,19 @@ export function createStore(currentToken, currentUser) {
         state.entryList = [];
         axios.defaults.headers.common = {};
       },
-      UPDATE_ENTRIES(state){
-        EntryService.getEntriesForUser(state.user.id)
-        .then((response) =>{
-          state.entryList = response.data;
-        });
+      async UPDATE_ENTRIES(state){
+        try{
+          const output = await EntryService.getEntriesForUser(state.user.id);
+          state.entryList = output.data;
+        } catch (error){
+          console.log(error);
+        }
+
+
+        // EntryService.getEntriesForUser(state.user.id)
+        // .then((response) =>{
+        //   state.entryList = response.data;
+        // });
         },
         
       }

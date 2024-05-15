@@ -1,11 +1,13 @@
 <template>
-    <NavOther class="log-nav"/>
+    <NavOther class="log-nav" />
     <div class="spacer"></div>
     <div class="content">
         <div class="intro">
             <h1>Please log session below</h1>
         </div>
-        <LogSession />
+        <div class="content-form">
+            <LogSession />
+        </div>
     </div>
 </template>
 
@@ -23,7 +25,7 @@ export default {
 
 <style>
 .spacer {
-    height: 5rem;
+    height: 15rem;
 }
 
 .intro {
@@ -31,13 +33,15 @@ export default {
 }
 
 .content {
+
     border: 2px solid black;
     margin-left: 25%;
     margin-right: 25%;
 }
+
 .log-nav {
     position: absolute;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
 }
 </style>

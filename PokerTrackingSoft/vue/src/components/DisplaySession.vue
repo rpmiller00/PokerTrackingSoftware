@@ -14,11 +14,6 @@
 <script>
 import EntryService from '../services/EntryService.js';
 export default {
-    data() {
-        return {
-            hours: this.calculateDifference()
-        }
-    },
     props: {
         entry: {
             type: Object,
@@ -31,19 +26,6 @@ export default {
             EntryService.deleteEntry(this.entry.entryId);
             this.$router.go(0);
         },
-        calculateDifference() {
-            var startDateTime = new Date(this.entry.startTime);
-            var endDateTime = new Date(this.entry.endTime);
-
-            // Calculate the difference in milliseconds
-            var difference = Math.abs(endDateTime - startDateTime);
-
-            // Convert milliseconds to hours
-            var hours = difference / (1000 * 60 * 60);
-
-            return hours;
-
-        }
 
     }
 }
